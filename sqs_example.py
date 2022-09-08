@@ -81,7 +81,13 @@ def receive_messages(queue_url):
             # Wait for 60 seconds
             time.sleep(60)
         else:
-            print(data['Messages'])
+           for message in data['Messages']:
+                print(message)
+                sqs.delete_message(
+                    QueueUrl = queue_url,
+                    ReceiptHandle = message['ReceiptHandle']
+                )
+                print('Deleted message')
             # Wait for 1 second
             time.sleep(1)
             
