@@ -85,12 +85,14 @@ def receive_messages(queue_url):
             # Wait for 1 second
             time.sleep(1)
             
+            
 # Main program
 def main():
     sqs_queue_url = create_sqs_queue('backspace-lab')
     print('Successfully created SQS queue URL '+ sqs_queue_url )
     create_messages(sqs_queue_url)
     print("Successfully created messages")
+    receive_messages(sqs_queue_url)
 
 if __name__ == '__main__':
     main()
